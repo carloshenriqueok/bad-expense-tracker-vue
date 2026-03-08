@@ -13,3 +13,7 @@ body {
     Roboto, 
     sans-serif;
 }
+
+ul {
+  list-style: none;
+}

@@ -12,8 +12,13 @@ body {
     'Segoe UI', 
     Roboto, 
     sans-serif;
+    color: #2b2b2b;
 }
 
 ul {
   list-style: none;
+}
+
+main {
+  margin-top: 6em;
 }

@@ -38,7 +38,7 @@ const value = computed({
 
 <style scoped>
 .app-input {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .label {

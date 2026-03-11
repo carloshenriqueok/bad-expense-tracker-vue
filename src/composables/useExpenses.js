@@ -26,7 +26,7 @@ loadStorage();
 
 export function useExpense(){
     const totalExp = computed(() => {
-        return expenses.value.reduce((sum, item) => sum + Number(item.price.replace(',' , '.') || 0), 0);
+        return expenses.value.reduce((sum, item) => sum + Number(item.value.replace(',' , '.') || 0), 0);
     });
 
     function addExpense(expense) {
@@ -41,6 +41,9 @@ export function useExpense(){
     }
 
     function deleteExpense(id) {
+        if(!confirm('Tem certeza que deseja excluir esse registro?')) {
+            return
+        }
         expenses.value = expenses.value.filter((item) => item.id !== id);
         saveStorage();
     };

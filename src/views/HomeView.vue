@@ -1,10 +1,12 @@
 <script setup>
+import { useRouter } from "vue-router"
 import AppHeader from "../components/layout/AppHeader.vue"
 import AppTabBar from "../components/layout/AppTabBar.vue"
 import AppButton from "../components/forms/AppButton.vue"
 import { useExpense } from "../composables/useExpenses"
 
-const { expenses } = useExpense();
+const router = useRouter();
+const { expenses, clearAll, deleteExpense, totalExp } = useExpense();
 </script>
 
 <template>
@@ -14,12 +16,14 @@ const { expenses } = useExpense();
             <h1>Gastos totais do dia</h1>
             <ul class="actions-btn">
                 <li>
-                    <AppButton>Adicionar Gasto</AppButton>
+                    <AppButton @click="router.push('adicionar')">Adicionar Gasto</AppButton>
                 </li>
                 <li>
-                    <AppButton variant="danger">Limpar</AppButton>
+                    <AppButton variant="danger" @click="clearAll">Limpar</AppButton>
                 </li>
             </ul>
+
+            <h2>Total: R$ {{ totalExp.toFixed(2).replace('.' , ',') }}</h2>
 
             <div class="table-container">
                 <table>
@@ -37,7 +41,7 @@ const { expenses } = useExpense();
                             <td>{{ exp.value }}</td>
                             <td>{{ exp.category }}</td>
                             <td>
-                                <span class="mdi mdi-delete-outline"></span>
+                                <span class="mdi mdi-delete-outline" @click="deleteExpense(exp.id)"></span>
                             </td>
                         </tr>
                     </tbody>
@@ -47,7 +51,7 @@ const { expenses } = useExpense();
 
         <section class="empty-section" v-else>
             <h1>Nenhum gasto registrado aqui.</h1>
-            <AppButton>Adicionar Gasto</AppButton>
+            <AppButton @click="router.push('/adicionar')">Adicionar Gasto</AppButton>
         </section>
 
         <AppTabBar />
@@ -55,8 +59,9 @@ const { expenses } = useExpense();
 </template>
 
 <style scoped>
-.home-section h1{
+.home-section h1, h2{
     text-align: center;
+    margin-top: 1em;
 }
 
 .table-container {
@@ -106,6 +111,7 @@ td {
     align-items: center;
     justify-content: center;
     height: 50vh;
+    padding: 0 1.2em;
 }
 
 
@@ -114,6 +120,5 @@ td {
     text-align: center;
     margin-bottom: 1em;
 }
-
 
 </style>

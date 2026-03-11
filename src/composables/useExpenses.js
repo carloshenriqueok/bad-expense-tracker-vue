@@ -1,15 +1,9 @@
 import { computed, ref } from 'vue';
 
 const expenses = ref([]);
+const filter = ref('tudo');
 
 const STORAGE_KEY = 'expenses';
-
-// const filtered = computed(() => {
-//     if (filter.value === 'all') {
-//         return expenses.value;
-//     }
-//     return expenses.value.filter((item) => item.category === filter.value);
-// });
 
 function loadStorage() {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -62,5 +56,6 @@ export function useExpense(){
         deleteExpense,
         clearAll,
         expenses,
+        filter
     }
 }

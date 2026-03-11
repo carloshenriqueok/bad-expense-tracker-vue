@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import { useRouter } from "vue-router"
 import AppHeader from "../components/layout/AppHeader.vue"
 import AppTabBar from "../components/layout/AppTabBar.vue"
@@ -6,7 +7,14 @@ import AppButton from "../components/forms/AppButton.vue"
 import { useExpense } from "../composables/useExpenses"
 
 const router = useRouter();
-const { expenses, clearAll, deleteExpense, totalExp } = useExpense();
+const { expenses, clearAll, deleteExpense, totalExp, filter } = useExpense();
+
+const filteredExpenses = computed(() => {
+    if (filter.value === 'tudo') {
+        return expenses.value;
+    }
+    return expenses.value.filter(exp => exp.category === filter.value);
+});
 </script>
 
 <template>
@@ -36,7 +44,7 @@ const { expenses, clearAll, deleteExpense, totalExp } = useExpense();
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="exp in expenses" :key="exp.id">
+                        <tr v-for="exp in filteredExpenses" :key="exp.id">
                             <td>{{ exp.title }}</td>
                             <td>{{ exp.value }}</td>
                             <td>{{ exp.category }}</td>

@@ -44,9 +44,9 @@ function submitForm() {
                 />
                 <label for="categoria" class="label-category">Categoria: <span class="required">*</span></label>
                 <select v-model="form.category" id="categoria" class="select-category">
-                    <option value="Comida">Comida</option>
-                    <option value="Transporte">Transporte</option>
-                    <option value="Outro">Outro</option>
+                    <option value="comida">Comida</option>
+                    <option value="transporte">Transporte</option>
+                    <option value="outro">Outro</option>
                 </select>
                 <AppButton type="submit">Registrar</AppButton>
             </form>

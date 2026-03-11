@@ -1,14 +1,20 @@
 <script setup>
+import {useExpense} from "../../composables/useExpenses";
+
+const { filter } = useExpense();
+function setFilter(value) {
+    filter.value = value;
+}
 </script>
 
 <template>
     <footer class="tab-bar">
         <nav>
             <ul class="tab-list">
-                <li class="tab-item"><span class="mdi mdi-home-outline"></span></li>
-                <li class="tab-item"><span class="mdi mdi-food-outline"></span></li>
-                <li class="tab-item"><span class="mdi mdi-train-car"></span></li>
-                <li class="tab-item"><span class="mdi mdi-dots-horizontal"></span></li>
+                <li class="tab-item" @click="setFilter('tudo')"><span class="mdi mdi-home-outline"></span></li>
+                <li class="tab-item" @click="setFilter('comida')"><span class="mdi mdi-food-outline"></span></li>
+                <li class="tab-item" @click="setFilter('transporte')"><span class="mdi mdi-train-car"></span></li>
+                <li class="tab-item" @click="setFilter('outro')"><span class="mdi mdi-dots-horizontal"></span></li>
             </ul>
         </nav>
     </footer>

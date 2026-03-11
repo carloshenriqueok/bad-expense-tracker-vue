@@ -25,7 +25,7 @@ defineProps({
 
 <style scoped>
 .app-button{
-    width: 100%;
+    width: 80%;
     padding: 12px 16px;
     border: none;
     border-radius: 6px;
